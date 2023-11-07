@@ -30,12 +30,14 @@ class AlarmClock {
 
     start() {
         if (!this.intervalId) {
-            this.intervalId = setInterval(this.alarmCollection.forEach(alarm => {
-                if (alarm.time === this.getCurrentFormattedTime() && alarm.canCall) {
-                    alarm.canCall = false;
-                    alarm.callback();
-                }
-            }), 1000);
+            this.intervalId = setInterval(() => {
+                this.alarmCollection.forEach(alarm => {
+                    if (alarm.time === this.getCurrentFormattedTime() && alarm.canCall) {
+                        alarm.canCall = false;
+                        alarm.callback();
+                    }
+                })
+            }, 1000);
         }
     }
 
